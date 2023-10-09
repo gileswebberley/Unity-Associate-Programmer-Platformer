@@ -22,10 +22,17 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    private static void PrintHealth()
+    public static float GetHealthPercent()
     {
-        Debug.Log($"Health: {health}");
+        if(health >= maxHealth)
+        {
+            return 100f;
+        }else
+        {
+            return (maxHealth/100)*health;
+        }
     }
+
     public static void ResetHealth(float startingHealth)
     {
         health = startingHealth;
@@ -41,5 +48,9 @@ public class HealthManager : MonoBehaviour
             health = (health < maxHealth) ? health + 1 : health;
             PrintHealth();
         }
+    }
+    private static void PrintHealth()
+    {
+        Debug.Log($"Health: {health}");
     }
 }
